@@ -1,4 +1,6 @@
+import java.sql.SQLOutput;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class PhoneBook {
     String[][] phoneBook = {
@@ -8,6 +10,21 @@ public class PhoneBook {
     };
 
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        boolean isDo = true;
+
+        while (isDo) {
+            System.out.println("Введите имя, которое хотите добавить в справочник");
+            boolean isCorrectName = checkName(scanner.nextLine());
+            while (!isCorrectName){
+                System.out.println("Введие корректное имя в формате Фамилия Имя Отчество через пробел");
+                isCorrectName = checkName(scanner.nextLine());
+            }
+
+            System.out.println("Нажмите y чтобы выйти, иначе продолжить");
+            if (scanner.nextLine().equals("y")) isDo = false;
+        }
+
         //Добавить считывание ввода пользователя в цикле
 
     }
@@ -17,7 +34,8 @@ public class PhoneBook {
     }
 
     public static boolean checkName(String name) {
-        return true;
+        String[] fullNameInArray = name.trim().split(" ");
+        return fullNameInArray.length == 3;
     }
 
     public static String formatName(String name) {
