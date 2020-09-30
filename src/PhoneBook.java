@@ -1,7 +1,15 @@
+import java.util.Arrays;
+
 public class PhoneBook {
+    String[][] phoneBook = {
+            {"Иванов Иван Иванович", "+7 911 999 99 99"},
+            {"Сергеева Мария Анатольевна", "+7 888 454 33 33"},
+            {"Яшкин Валентин Петрович", "+7 788 567 44 44"}
+    };
 
     public static void main(String[] args) {
         //Добавить считывание ввода пользователя в цикле
+
     }
 
     public static boolean checkPhoneNumber(String phoneNumber) {
