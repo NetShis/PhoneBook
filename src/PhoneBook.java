@@ -1,6 +1,3 @@
-import javax.sound.midi.Soundbank;
-import java.sql.SQLOutput;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class PhoneBook {
@@ -44,6 +41,8 @@ public class PhoneBook {
                     phone = scanner.nextLine();
                     isCorrectPhone = checkPhoneNumber(phone);
                 }
+                phone = formatPhoneNumber(phone);
+                add(phoneBook, name, phone);
             }
 
 
@@ -75,7 +74,8 @@ public class PhoneBook {
     }
 
     public static String formatPhoneNumber(String number) {
-        return "";
+        String clean = number.replaceAll("[^0-9]", "");
+        return "+7" + " " + clean.substring(1, 4) + " " + clean.substring(4, 7) + " " + clean.substring(7, 9) + " " + clean.substring(9);
     }
 
     public static void add(String[][] book, String name, String number) {
