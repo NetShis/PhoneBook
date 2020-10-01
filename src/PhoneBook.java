@@ -12,10 +12,11 @@ public class PhoneBook {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        String name;
+        String name, phone;
         boolean isDo = true;
 
         while (isDo) {
+            boolean IsNameInPhoneBook = false;
             System.out.println("Введите имя, которое хотите добавить в справочник");
             name = scanner.nextLine();
             boolean isCorrectName = checkName(name);
@@ -28,11 +29,21 @@ public class PhoneBook {
             name = formatName(name);
 
             for (int i = 0; i < phoneBook.length; i++) {
-                if (phoneBook[i][0].equals(name)){
+                if (phoneBook[i][0].equals(name)) {
                     System.out.println(phoneBook[i][1]);
-                    break;
+                    IsNameInPhoneBook = true;
                 }
+            }
 
+            if (!IsNameInPhoneBook) {
+                System.out.println("Введите номер телефона, для этого ФИО");
+                phone = scanner.nextLine();
+                boolean isCorrectPhone = checkPhoneNumber(phone);
+                while (!isCorrectPhone) {
+                    System.out.println("Введие корректый телефон в формате: +7 XXX XXX XX XX");
+                    phone = scanner.nextLine();
+                    isCorrectPhone = checkPhoneNumber(phone);
+                }
             }
 
 
@@ -45,7 +56,8 @@ public class PhoneBook {
     }
 
     public static boolean checkPhoneNumber(String phoneNumber) {
-        return true;
+        String clean = phoneNumber.replaceAll("[^0-9]", "");
+        return clean.length() == 11;
     }
 
     public static boolean checkName(String name) {
