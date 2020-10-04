@@ -8,6 +8,7 @@ public class PhoneBook {
     };
 
     public static void main(String[] args) {
+
         Scanner scanner = new Scanner(System.in);
         String name, phone;
         boolean isDo = true;
@@ -45,7 +46,7 @@ public class PhoneBook {
                 add(phoneBook, name, phone);
             }
 
-
+            list(phoneBook);
             System.out.println("Нажмите y чтобы выйти, иначе продолжить");
             if (scanner.nextLine().equals("y")) isDo = false;
         }
@@ -79,10 +80,19 @@ public class PhoneBook {
     }
 
     public static void add(String[][] book, String name, String number) {
-        //add logic
+        String[][] tempPhoneBook = new String[book.length + 1][2];
+        for (int i = 0; i < tempPhoneBook.length - 1; i++) {
+            tempPhoneBook[i][0] = book[i][0];
+            tempPhoneBook[i][1] = book[i][1];
+        }
+        tempPhoneBook[book.length][0] = name;
+        tempPhoneBook[book.length][1] = number;
+        phoneBook = tempPhoneBook;
     }
 
     public static void list(String[][] book) {
-        //print phone book
+        for (int i = 0; i < book.length; i++) {
+            System.out.println(book[i][0] + ": " + book[i][1]);
+        }
     }
 }
